@@ -199,6 +199,10 @@
     return matcher.test(title);
   }
 
+  function titleContainsEveryToken(title, tokens) {
+    return tokens.every((token) => titleContainsToken(title, token));
+  }
+
   function titleMatchesSearch(title, query, tokens) {
     const normalizedQuery = normalizeSearchText(query);
     if (!normalizedQuery) {
@@ -208,11 +212,11 @@
     const normalizedTitle = normalizeSearchText(title);
 
     if (settingsCache.exactTextMatch) {
-      return normalizedTitle === normalizedQuery;
+      return titleContainsEveryToken(normalizedTitle, tokens);
     }
 
     if (settingsCache.strictAllTokens) {
-      return tokens.every((token) => titleContainsToken(normalizedTitle, token));
+      return titleContainsEveryToken(normalizedTitle, tokens);
     }
 
     return tokens.some((token) => titleContainsToken(normalizedTitle, token));

@@ -13,7 +13,7 @@ Hides irrelevant Wallapop search results and marks visited items.
 - Search result cards containing `wallapop-badge[badge-type="reserved"]` are shown in grayscale.
 - The extension icon opens a menu with search matching options.
 - `Every word` changes matching from any word to every word.
-- `Exact match` requires the full item title to equal the full query, case-insensitively.
+- `Exact match` requires the item title to contain every query word in any order, case-insensitively.
 
 ## Installation
 
