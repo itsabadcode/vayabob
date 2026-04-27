@@ -173,6 +173,10 @@
     return value.toLocaleLowerCase().replace(/\s+/g, " ").trim();
   }
 
+  function getTextTokens(value) {
+    return normalizeSearchText(value).match(/[\p{L}\p{N}]+/gu) || [];
+  }
+
   function getSearchQuery() {
     if (location.pathname !== "/search") {
       return "";
@@ -182,9 +186,7 @@
   }
 
   function getSearchTokens(query) {
-    return normalizeSearchText(query)
-      .split(" ")
-      .filter(Boolean);
+    return getTextTokens(query);
   }
 
   function escapeRegExp(value) {
@@ -203,6 +205,34 @@
     return tokens.every((token) => titleContainsToken(title, token));
   }
 
+  function tokensMatchExactly(left, right) {
+    if (left.length !== right.length) {
+      return false;
+    }
+
+    const counts = new Map();
+
+    for (const token of left) {
+      counts.set(token, (counts.get(token) || 0) + 1);
+    }
+
+    for (const token of right) {
+      const count = counts.get(token);
+
+      if (!count) {
+        return false;
+      }
+
+      if (count === 1) {
+        counts.delete(token);
+      } else {
+        counts.set(token, count - 1);
+      }
+    }
+
+    return counts.size === 0;
+  }
+
   function titleMatchesSearch(title, query, tokens) {
     const normalizedQuery = normalizeSearchText(query);
     if (!normalizedQuery) {
@@ -212,7 +242,7 @@
     const normalizedTitle = normalizeSearchText(title);
 
     if (settingsCache.exactTextMatch) {
-      return titleContainsEveryToken(normalizedTitle, tokens);
+      return tokensMatchExactly(getTextTokens(normalizedTitle), tokens);
     }
 
     if (settingsCache.strictAllTokens) {
