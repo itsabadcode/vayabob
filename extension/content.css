@@ -1,0 +1,32 @@
+.vayabob-dimmed {
+  opacity: 0.2 !important;
+}
+
+.vayabob-reserved {
+  filter: grayscale(1) !important;
+}
+
+.vayabob-viewed {
+  position: relative !important;
+}
+
+.vayabob-eye {
+  align-items: center;
+  background: rgba(21, 32, 38, 0.82);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(21, 32, 38, 0.22);
+  color: #fff;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  left: 8px;
+  pointer-events: none;
+  position: absolute;
+  top: 8px;
+  width: 28px;
+  z-index: 20;
+}
+
+.vayabob-eye svg {
+  display: block;
+}

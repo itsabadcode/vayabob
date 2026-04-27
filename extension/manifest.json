@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Vayabob",
+  "description": "Hides irrelevant Wallapop search results and marks visited items.",
+  "version": "0.2.0",
+  "action": {
+    "default_title": "Vayabob",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://*.wallapop.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.wallapop.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

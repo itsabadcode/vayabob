@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vayabob</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup__header">
+        <h1>Vayabob</h1>
+      </header>
+
+      <label class="setting">
+        <span class="setting__text">
+          <span class="setting__title">Every word</span>
+          <span class="setting__description">Card remains bright only if the title contains every word.</span>
+        </span>
+        <input id="strict-all-tokens" class="setting__input" type="checkbox">
+        <span class="setting__switch" aria-hidden="true"></span>
+      </label>
+
+      <label class="setting">
+        <span class="setting__text">
+          <span class="setting__title">Exact match</span>
+          <span class="setting__description">Card remains bright only if the title exactly matches the search query.</span>
+        </span>
+        <input id="exact-text-match" class="setting__input" type="checkbox">
+        <span class="setting__switch" aria-hidden="true"></span>
+      </label>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
