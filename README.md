@@ -7,9 +7,13 @@ Hides irrelevant Wallapop search results and marks visited items.
 - Runs on all `https://*.wallapop.com/*` locales.
 - On `/item/...-{id}` pages, stores the item id in `chrome.storage.local.viewed`.
 - `viewed` is an array of `{ id, viewedAt }` entries, older than 30 days are purged automatically.
+- On `/item/...-{id}` pages, adds a trash button near the favorite control or item title.
+- Clicking the trash button toggles the item id in `chrome.storage.local.trash`.
+- `trash` is an array of `{ id, trashedAt }` entries, older than 30 days are purged automatically.
 - On `/search?...keywords=...`, result cards with no title match against any keyword token are dimmed with `opacity: 0.2`.
 - Keyword tokens match on word/number boundaries, so `7` matches `Ryzen 7` but not `B760` or `LGA1700`.
 - Search result cards whose id exists in `viewed` get an eye overlay on the image area.
+- Search result cards whose id exists in `trash` are dimmed and have their title crossed out.
 - Search result cards containing `wallapop-badge[badge-type="reserved"]` are shown in grayscale.
 - The extension icon opens a menu with search matching options.
 - `Every word` changes matching from any word to every word, with extra title words allowed.
